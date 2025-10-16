@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@layer components {
+  .input-field {
+    border: 1px solid #d1d5db; /* border-gray-300 */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding-left: 0.75rem; /* px-3 */
+    padding-right: 0.75rem; /* px-3 */
+    padding-top: 0.5rem; /* py-2 */
+    padding-bottom: 0.5rem; /* py-2 */
+    width: 100%; /* w-full */
+    outline: none; /* focus:outline-none */
+    transition: all 0.2s; /* transition */
+  }
+  .input-field:focus {
+    box-shadow: 0 0 0 2px #60a5fa; /* focus:ring-2 focus:ring-blue-400 */
+  }
+  .btn-link {
+    color: #2563eb; /* text-blue-600 */
+    text-decoration: underline; /* underline */
+    font-weight: 500; /* font-medium */
+    cursor: pointer; /* cursor-pointer */
+  }
+  .btn-link:hover {
+    color: #1e40af; /* hover:text-blue-800 */
+  }
+  }
+
