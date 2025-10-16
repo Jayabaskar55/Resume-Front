@@ -28,7 +28,7 @@ const iconMap = {
 export default function ResumeForm({ formData, setFormData }) {
   const formRef = useRef(null);
   const [skillInput, setSkillInput] = useState("");
-  const [projectInput] = useState("");
+  const [projectInput] = useState(""); // currently unused, kept as-is
 
   const addSkill = useCallback(() => {
     if (skillInput.trim()) {
@@ -44,7 +44,7 @@ export default function ResumeForm({ formData, setFormData }) {
     newSkills.splice(index, 1);
     setFormData({ ...formData, skills: newSkills });
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps, no-undef
+
   const addProject = useCallback(() => {
     setFormData({
       ...formData,
@@ -74,6 +74,7 @@ export default function ResumeForm({ formData, setFormData }) {
           return;
         }
 
+        // projectInput is currently unused; Enter logic kept for future use
         if (e.target.id === "projects-input" && projectInput.trim()) {
           addProject();
           return;
@@ -108,9 +109,6 @@ export default function ResumeForm({ formData, setFormData }) {
     setFormData({ ...formData, [section]: newSection });
   };
 
-  // Skills
-  // eslint-disable-next-line react-hooks/exhaustive-deps, no-undef
-
   // Projects
   const handleProjectNameChange = (index, value) => {
     const updated = [...formData.projects];
@@ -141,7 +139,7 @@ export default function ResumeForm({ formData, setFormData }) {
           <input
             type="text"
             placeholder="Full Name"
-            value={formData.personalInfo.fullName}
+            value={formData.personalInfo.fullName || ""}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -156,7 +154,7 @@ export default function ResumeForm({ formData, setFormData }) {
           <input
             type="email"
             placeholder="Email"
-            value={formData.personalInfo.email}
+            value={formData.personalInfo.email || ""}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -171,7 +169,7 @@ export default function ResumeForm({ formData, setFormData }) {
           <input
             type="text"
             placeholder="Phone"
-            value={formData.personalInfo.phone}
+            value={formData.personalInfo.phone || ""}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -185,7 +183,7 @@ export default function ResumeForm({ formData, setFormData }) {
           />
           <textarea
             placeholder="Summary"
-            value={formData.personalInfo.summary}
+            value={formData.personalInfo.summary || ""}
             onChange={(e) =>
               setFormData({
                 ...formData,
@@ -213,7 +211,7 @@ export default function ResumeForm({ formData, setFormData }) {
               <input
                 type="text"
                 placeholder="Degree"
-                value={ed.degree}
+                value={ed.degree || ""}
                 onChange={(e) =>
                   updateArrayField("education", i, "degree", e.target.value)
                 }
@@ -222,7 +220,7 @@ export default function ResumeForm({ formData, setFormData }) {
               <input
                 type="text"
                 placeholder="Institution"
-                value={ed.institution}
+                value={ed.institution || ""}
                 onChange={(e) =>
                   updateArrayField(
                     "education",
@@ -237,7 +235,7 @@ export default function ResumeForm({ formData, setFormData }) {
                 <input
                   type="number"
                   placeholder="Start Year"
-                  value={ed.startYear}
+                  value={ed.startYear || ""}
                   onChange={(e) =>
                     updateArrayField(
                       "education",
@@ -251,7 +249,7 @@ export default function ResumeForm({ formData, setFormData }) {
                 <input
                   type="number"
                   placeholder="End Year"
-                  value={ed.endYear}
+                  value={ed.endYear || ""}
                   onChange={(e) =>
                     updateArrayField("education", i, "endYear", e.target.value)
                   }
@@ -285,6 +283,7 @@ export default function ResumeForm({ formData, setFormData }) {
           </button>
         </div>
 
+        {/* EXPERIENCE */}
         <div className={sectionClass}>
           <h3 className="font-semibold mb-3 text-lg text-gray-800">
             Experience
@@ -297,7 +296,7 @@ export default function ResumeForm({ formData, setFormData }) {
               <input
                 type="text"
                 placeholder="Job Title"
-                value={exp.title}
+                value={exp.title || ""}
                 onChange={(e) =>
                   updateArrayField("experience", i, "title", e.target.value)
                 }
@@ -306,7 +305,7 @@ export default function ResumeForm({ formData, setFormData }) {
               <input
                 type="text"
                 placeholder="Company"
-                value={exp.company}
+                value={exp.company || ""}
                 onChange={(e) =>
                   updateArrayField("experience", i, "company", e.target.value)
                 }
@@ -316,7 +315,7 @@ export default function ResumeForm({ formData, setFormData }) {
                 <input
                   type="number"
                   placeholder="Start Year"
-                  value={exp.from}
+                  value={exp.from || ""}
                   onChange={(e) =>
                     updateArrayField("experience", i, "from", e.target.value)
                   }
@@ -325,7 +324,7 @@ export default function ResumeForm({ formData, setFormData }) {
                 <input
                   type="number"
                   placeholder="End Year"
-                  value={exp.to}
+                  value={exp.to || ""}
                   onChange={(e) =>
                     updateArrayField("experience", i, "to", e.target.value)
                   }
@@ -334,7 +333,7 @@ export default function ResumeForm({ formData, setFormData }) {
               </div>
               <textarea
                 placeholder="Description"
-                value={exp.description}
+                value={exp.description || ""}
                 onChange={(e) =>
                   updateArrayField(
                     "experience",
