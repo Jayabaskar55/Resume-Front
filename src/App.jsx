@@ -3,8 +3,8 @@ import ResumeForm from "./components/ResumeForm";
 import ResumePreview from "./components/ResumePreview";
 import ExportButtons from "./components/ExportButtons";
 
-import axios from "axios";
 import "./App.css";
+import apiAxios from "./API/Api";
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -21,10 +21,10 @@ export default function App() {
   async function handleGenerateResume() {
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5000/api/generate-resume", formData)
+      const response = await apiAxios.post("/api/generate-resume", formData);
 
       setResumeHTML(response.data.resumeHTML);
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       alert("Failed to generate resume.");
     }

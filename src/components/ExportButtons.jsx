@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import apiAxios from "../API/Api";
 
 export default function ExportButtons({ resumeHTML }) {
   const [loadingPDF, setLoadingPDF] = useState(false);
@@ -8,8 +8,8 @@ export default function ExportButtons({ resumeHTML }) {
     if (!resumeHTML) return alert("Generate resume first!");
     setLoadingPDF(true);
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/export-pdf",
+      const response = await apiAxios.post(
+        "/api/export-pdf",
         { resumeHTML },
         { responseType: "blob" }
       );
@@ -20,7 +20,7 @@ export default function ExportButtons({ resumeHTML }) {
       a.download = "resume.pdf";
       a.click();
       window.URL.revokeObjectURL(url);
-    // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line no-unused-vars
     } catch (error) {
       alert("Failed to export PDF");
     }
